@@ -1,2 +1,2 @@
-# Portal-da-Hist-ria
+# Portal-da-Historia
 Portal interativo de História
