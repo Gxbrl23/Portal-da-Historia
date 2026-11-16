@@ -34,9 +34,27 @@ body{background:#e9f3fc;color:var(--ink)}
 .footer strong{color:#c4b5f5}
 @media(max-width:760px){.hero{padding:25px 0 45px}.hero-in{padding:0 18px}.hero-panel{padding:39px 29px}.hero h1{font-size:42px}.section{padding:52px 18px 65px}.cards{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* Revisão: painel mais largo e escuro, dourado no topo, lavanda preservada no acervo */
+.top{background:#10192b}
+.symbol{color:#e8c17b;border-color:#d7a65380}
+.identity small{color:#d2c1a0}
+.hero{background:linear-gradient(115deg,#234668 0%,#37658b 70%,#527ba0 100%);padding:56px 0 68px}
+.hero-in{max-width:1220px}
+.hero-panel{width:100%;max-width:none;min-height:365px;padding:67px clamp(32px,6vw,82px);background:linear-gradient(120deg,#111b2d 0%,#17273e 68%,#1e3350 100%);border:1px solid #e4d9c12b;border-radius:18px}
+.hero h1{max-width:980px}
+.hero h1 em{color:#e6b96b}
+.eyebrow{color:#e5ba6d}.eyebrow:before{background:#d3aa64}
+.button.gold{background:#d8aa61;color:#192132}
+.button.gold:hover{background:#eac27f}
+.hero p{max-width:840px}
+.section{background:linear-gradient(145deg,#f0ecfc 0%,#e8e4f7 58%,#f5f2fd 100%)}
+.section-label{color:#7361b2}.card-kicker{color:#7464aa}
+.footer strong{color:#e1bd7b}
+@media(max-width:760px){.hero-panel{min-height:0;padding:42px 27px}.hero{padding:32px 0 48px}}
 </style></head><body>
 <header class="top"><div class="wrap top-in"><a class="identity" href="./" aria-label="Portal da História, início"><span class="symbol">✦</span><span><strong>Portal da História</strong><small>Professor Gabriel</small></span></a></div></header>
-<main><section class="hero"><div class="wrap hero-in"><div class="hero-panel"><div class="eyebrow">Sua jornada pelo passado começa aqui</div><h1>História para explorar,<br>investigar e <em>descobrir.</em></h1><p>Escolha sua etapa de ensino e encontre capítulos interativos, mapas históricos, fontes, fichas de estudo e desafios.</p><div class="hero-cta"><a class="button gold" href="#etapas">Explorar as turmas <span aria-hidden="true">↗</span></a></div></div></div></section>
+<main><section class="hero"><div class="wrap hero-in"><div class="hero-panel"><div class="eyebrow">Sua jornada pelo passado começa aqui</div><h1>História para explorar,<br>investigar e <em>descobrir.</em></h1><p>Um espaço para explorar o mundo, investigar fontes históricas e descobrir como o passado ajuda a compreender o presente. Escolha sua turma e comece a sua jornada.</p><div class="hero-cta"><a class="button gold" href="#etapas">Explorar as turmas <span aria-hidden="true">↗</span></a></div></div></div></section>
 <section class="section wrap" id="etapas"><div class="section-label">Acervo de aprendizagem</div><h2>Por onde começa sua jornada?</h2><p class="section-lead">Os materiais estão organizados por etapa de ensino e ano escolar. Você encontrará capítulos, mapas, documentos, atividades e experiências interativas.</p><div class="cards">
 <a class="card" href="fundamental/"><div class="art"><svg viewBox="0 0 560 230" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração de um castelo medieval ao entardecer"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#657c91"/><stop offset="1" stop-color="#d0b295"/></linearGradient></defs><rect width="560" height="230" fill="url(#sky)"/><circle cx="439" cy="62" r="32" fill="#ffe0a3"/><path d="M0 167Q110 105 224 160T560 145V230H0" fill="#718b82"/><path d="M0 195Q165 142 305 198T560 171V230H0" fill="#3f635f"/><path d="M155 189V91h40V67h39v24h31V57h43v34h38v98z" fill="#354459"/><path d="M150 91l25-30 25 30M260 57l25-31 29 31M338 91l26-27 26 27" fill="#28374b"/><path d="M201 189v-39a22 22 0 0 1 44 0v39" fill="#a98e73"/><path d="M174 110h13v24h-13zm93-9h13v27h-13zm53 9h12v24h-12z" fill="#e5b774"/><path d="M0 224Q190 191 370 220T560 205" stroke="#c6b18b" stroke-width="4" fill="none"/></svg></div><div class="card-inner"><div class="card-kicker">Ensino Fundamental · Anos Finais</div><h3>Descobrir o mundo e suas histórias.</h3><p>Do 6º ao 9º ano: explorações visuais, perguntas instigantes, mapas históricos e atividades para aprender investigando.</p><div class="action">Escolher meu ano escolar <span class="arrow">↗</span></div></div></a>
 <a class="card" href="medio/"><div class="art"><svg viewBox="0 0 560 230" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração de um conjunto de colunas históricas"><defs><linearGradient id="sun" x2="0" y2="1"><stop stop-color="#937a78"/><stop offset="1" stop-color="#e7c7a1"/></linearGradient></defs><rect width="560" height="230" fill="url(#sun)"/><circle cx="426" cy="66" r="42" fill="#f5ddb2"/><path d="M0 177l137-68 106 55 129-82 188 108v40H0" fill="#a67d7c"/><path d="M0 214l162-43 142 30 143-43 113 35v37H0" fill="#785f67"/><path d="M126 192h310v17H126z" fill="#dec8a7"/><path d="M151 100h259v12H151z" fill="#e8d4b6"/><path d="M138 100l143-59 143 59z" fill="#efe0c5"/><path d="M161 112h28v80h-28zm57 0h28v80h-28zm57 0h28v80h-28zm57 0h28v80h-28zm57 0h27v80h-27z" fill="#efddc0"/><path d="M152 123h272v7H152z" fill="#8c7377" opacity=".4"/><path d="M124 208h314v12H124z" fill="#c4ae91"/></svg></div><div class="card-inner"><div class="card-kicker">Ensino Médio</div><h3>Investigar, interpretar e pensar criticamente.</h3><p>Do 1º ao 3º ano: fontes, debates, processos históricos e aprofundamento dos conteúdos para análises mais complexas.</p><div class="action">Escolher minha série <span class="arrow">↗</span></div></div></a>
