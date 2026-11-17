@@ -58,4 +58,21 @@ body{background:linear-gradient(145deg,#f0ecfc 0%,#e8e4f7 58%,#f5f2fd 100%);colo
 .footer{background:#10192b;color:#d5cfdd;border:0;padding:22px;text-align:center}
 .smoke{opacity:.12}.mist{opacity:.06}
 @media(max-width:700px){.header{padding:16px 20px;min-height:75px}.hero{padding:44px 22px;min-height:0}.section{padding-top:47px;padding-bottom:55px}}
-</style></head><body><div class="smoke" aria-hidden="true"><span class="mist one"></span><span class="mist two"></span><span class="mist three"></span></div><div class="container"><header class="header"><a class="brand" href="../"><span class="brand-icon" aria-hidden="true">✧</span><span><span class="brand-text">Portal da História</span><small>Professor Gabriel</small></span></a><a class="back" href="../">← Voltar aos anos</a></header><section class="hero"><span class="eyebrow">Ensino Fundamental</span><h1>História — <em>7º ano</em></h1><p>Explore os conteúdos disponíveis nesta biblioteca e abra cada capítulo dentro do Portal da História.</p></section><section class="section"><h2>Capítulos</h2><p>Os capítulos deste ano serão adicionados gradualmente.</p><div class="empty">Esta biblioteca está em preparação. Os novos materiais aparecerão aqui quando forem disponibilizados.</div></section></div><footer class="footer">PORTAL DA HISTÓRIA · PROFESSOR GABRIEL</footer></body></html>
+
+/* Padrão único das bibliotecas: cabeçalho azul, capítulos sobre azul quase branco */
+:root{color-scheme:light;--text:#203650;--muted:#62758a}
+body{color:#203650;background:radial-gradient(ellipse 45% 44% at 6% 75%,rgba(86,136,195,.22),transparent 85%),radial-gradient(ellipse 45% 43% at 94% 67%,rgba(55,107,174,.19),transparent 85%),linear-gradient(145deg,#f9fcff,#edf5fd 56%,#f9fcff)}
+.header{background:#10192b;color:#fff}.brand-text{color:#fff}.brand small{color:#d3c2a1}.brand-icon{color:#eac184;background:#182941;border-color:#bfa578}
+.back{color:#f2e3c8;border-color:#d7a65370;background:#ffffff0c}.back:hover{color:#fff;background:#ffffff20}
+.hero{background:linear-gradient(115deg,#234668 0%,#37658b 70%,#527ba0 100%);border:0;border-radius:0;box-shadow:none}
+.hero h1{color:#fff}.eyebrow,.hero h1 em{color:#e6b96b}.hero p{color:#e6edf7}.hero:after{border-color:#e5bc6e23}
+.section{position:relative;isolation:isolate;padding-top:65px;padding-bottom:75px}
+.section:before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-38px -6vw -60px;background:radial-gradient(ellipse 46% 65% at 8% 52%,rgba(91,151,209,.17),transparent 85%),radial-gradient(ellipse 48% 64% at 92% 52%,rgba(66,120,182,.15),transparent 85%);filter:blur(12px)}
+.section h2{color:#223b5a}.section>p{color:#62758a}
+.chapter,.empty{background:#fff!important;border:1px solid #cbd7e5!important;color:#62758a;box-shadow:0 9px 24px rgba(26,59,94,.12),0 2px 7px rgba(26,59,94,.05)}
+.chapter strong{color:#243b57}.chapter small,.chapter .arrow{color:#466d93}.chapter:hover{background:#fff;border-color:#97aeca!important}
+.footer{background:#10192b;color:#d5cfdd;border:0;padding:22px;text-align:center}
+.smoke{opacity:.12}.mist{opacity:.06}
+@media(max-width:700px){.section{padding-top:47px;padding-bottom:55px}}
+.section h2.chapters-pill{display:inline-flex;width:max-content;padding:9px 17px;border:1px solid #a9bcd5;border-radius:999px;background:#e8f0f9;color:#3f638e;letter-spacing:.6px;font-size:15px;margin-bottom:16px}
+</style></head><body><div class="smoke" aria-hidden="true"><span class="mist one"></span><span class="mist two"></span><span class="mist three"></span></div><div class="container"><header class="header"><a class="brand" href="../"><span class="brand-icon" aria-hidden="true">✧</span><span><span class="brand-text">Portal da História</span><small>Professor Gabriel</small></span></a><a class="back" href="../">← Voltar aos anos</a></header><section class="hero"><span class="eyebrow">Ensino Fundamental</span><h1>História — <em>7º ano</em></h1><p>Explore os conteúdos disponíveis nesta biblioteca e abra cada capítulo dentro do Portal da História.</p></section><section class="section"><h2 class="chapters-pill">Capítulos</h2><p>Os capítulos deste ano serão adicionados gradualmente.</p><div class="empty">Esta biblioteca está em preparação. Os novos materiais aparecerão aqui quando forem disponibilizados.</div></section></div><footer class="footer">PORTAL DA HISTÓRIA · PROFESSOR GABRIEL</footer></body></html>
