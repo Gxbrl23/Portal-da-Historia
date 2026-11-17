@@ -1,0 +1,45 @@
+/* Portal da História — cabeçalho global. Referência visual: página inicial. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
+header.top, header.unified-portal-header {
+  display:block!important; width:100%!important; max-width:none!important;
+  margin:0!important; padding:0!important; min-height:0!important;
+  background:#101d34!important; color:#fff!important; border:0!important;
+  border-bottom:1px solid #ffffff20!important; border-radius:0!important;
+  box-shadow:none!important; position:relative; z-index:999;
+}
+header.top .top-in, header.unified-portal-header .unified-portal-inner {
+  box-sizing:border-box!important; max-width:1180px!important; width:100%!important;
+  height:85px!important; min-height:85px!important; margin:0 auto!important;
+  padding:0 28px!important; display:flex!important; align-items:center!important;
+  justify-content:space-between!important; gap:18px!important;
+}
+header.top .identity, header.unified-portal-header .unified-portal-brand {
+  display:flex!important; align-items:center!important; gap:14px!important;
+  color:#fff!important; text-decoration:none!important; flex-shrink:0!important;
+}
+header.top .symbol, header.unified-portal-header .unified-portal-star {
+  display:grid!important; place-items:center!important; box-sizing:border-box!important;
+  width:45px!important; height:45px!important; flex:0 0 45px!important;
+  border:1px solid #978ac685!important; border-radius:50%!important;
+  background:transparent!important; color:#c6b8f8!important;
+  font:26px/1 Georgia,serif!important; padding:0!important;
+}
+header.top .identity strong, header.unified-portal-header .unified-portal-brand strong {
+  display:block!important; color:#fff!important; font-family:'Playfair Display',Georgia,serif!important;
+  font-size:21px!important; font-weight:700!important; line-height:1.2!important;
+  letter-spacing:.1px!important; text-transform:none!important;
+}
+header.top .identity small, header.unified-portal-header .unified-portal-brand small {
+  display:block!important; color:#c4b8e8!important; font-family:'DM Sans',Arial,sans-serif!important;
+  font-size:11px!important; font-weight:400!important; line-height:1.2!important;
+  letter-spacing:2.1px!important; text-transform:uppercase!important; margin-top:3px!important;
+}
+header.unified-portal-header .back { color:#eae6dc!important; font-family:'DM Sans',Arial,sans-serif!important; font-size:13px!important; font-weight:700!important; text-decoration:none!important; white-space:nowrap; }
+header.unified-portal-header .back:hover {color:#d5c5ff!important}
+@media(max-width:760px){
+ header.top .top-in, header.unified-portal-header .unified-portal-inner {height:auto!important;min-height:77px!important;padding:10px 18px!important}
+ header.top .identity strong, header.unified-portal-header .unified-portal-brand strong {font-size:16px!important}
+ header.top .identity small, header.unified-portal-header .unified-portal-brand small {font-size:9px!important;letter-spacing:1px!important}
+ header.top .symbol, header.unified-portal-header .unified-portal-star {width:39px!important;height:39px!important;flex-basis:39px!important}
+ header.unified-portal-header .back {font-size:11px!important;white-space:normal;text-align:right}
+}
