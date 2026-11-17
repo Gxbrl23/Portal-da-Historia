@@ -226,7 +226,7 @@ const terms=[
 ['Édito de Tessalônica','Decreto de 380 que favoreceu o cristianismo niceno como religião imperial.'],
 ['Império Bizantino','Nome historiográfico dado ao Império Romano do Oriente, com capital em Constantinopla.']
 ];
-function renderTerms(){const q=document.getElementById('term-search').value.toLocaleLowerCase('pt-BR');const arr=terms.filter(a=>a.join(' ').toLocaleLowerCase('pt-BR').includes(q));document.getElementById('term-grid').innerHTML=arr.length?arr.map(a=>'<div class="inter-card"><strong>'+romanIcon(a[0])+'</strong><small>'+a[1]+'</small></div>').join(''):'<p>Nenhum termo encontrado. Experimente outra palavra.</p>'}
+function renderTerms(){const q=document.getElementById('term-search').value.toLocaleLowerCase('pt-BR');const arr=terms.filter(a=>a.join(' ').toLocaleLowerCase('pt-BR').includes(q));document.getElementById('term-grid').innerHTML=arr.length?arr.map(a=>'<div class="inter-card"><strong>'+romanIcon('book')+' '+a[0]+'</strong><small>'+a[1]+'</small></div>').join(''):'<p>Nenhum termo encontrado. Experimente outra palavra.</p>'}
 const labs=[
 ['Um governo de três líderes: César, Crasso e Pompeu.',['Tetrarquia','Primeiro Triunvirato','Pax Romana'],1,'O Primeiro Triunvirato reuniu César, Crasso e Pompeu.'],
 ['Política de integração de territórios por vias, portos e comércio.',['Pax Romana','Colonato','Ruralização'],0,'A Pax Romana associou estabilidade relativa à integração econômica e ao controle imperial.'],
