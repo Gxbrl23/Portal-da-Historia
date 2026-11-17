@@ -93,6 +93,15 @@ body{background:#e9f3fc;color:var(--ink)}
 #etapas .mist-cloud.right{right:-18%;background:radial-gradient(ellipse at center,rgba(112,161,220,.62),rgba(169,167,224,.35) 38%,transparent 75%)}
 #etapas .mist-cloud.low{opacity:.19}
 @media(max-width:750px){#etapas .mist-cloud{opacity:.25}}
+
+/* Ajuste solicitado: acervo azul quase branco e fumaça azul mais intensa */
+#etapas{background:linear-gradient(145deg,#f8fbff 0%,#eef6fd 55%,#f6faff 100%)}
+#etapas .mist-cloud{mix-blend-mode:multiply;filter:blur(57px);opacity:.58}
+#etapas .mist-cloud.left{background:radial-gradient(ellipse at center,rgba(53,108,169,.48) 0%,rgba(91,149,201,.31) 40%,transparent 76%)}
+#etapas .mist-cloud.right{background:radial-gradient(ellipse at center,rgba(38,89,151,.48) 0%,rgba(101,154,204,.30) 40%,transparent 76%)}
+#etapas .mist-cloud.low{background:radial-gradient(ellipse at center,rgba(64,121,177,.30),transparent 73%);opacity:.30}
+#etapas:before{background-image:radial-gradient(#8caecb .65px,transparent .65px)}
+@media(max-width:750px){#etapas .mist-cloud{opacity:.30}}
 </style></head><body>
 <header class="top"><div class="wrap top-in"><a class="identity" href="./" aria-label="Portal da História, início"><span class="symbol">✦</span><span><strong>Portal da História</strong><small>Professor Gabriel</small></span></a></div></header>
 <main><section class="hero"><div class="wrap hero-in"><div class="hero-panel"><div class="eyebrow">Sua jornada pelo passado começa aqui</div><h1>História para explorar,<br>investigar e <em>descobrir.</em></h1><p>Um espaço para explorar o mundo, investigar fontes históricas e descobrir como o passado ajuda a compreender o presente. Escolha sua turma e comece a sua jornada.</p><div class="hero-cta"><a class="button gold" href="#etapas">Explorar as turmas <span aria-hidden="true">↗</span></a></div></div></div></section>
