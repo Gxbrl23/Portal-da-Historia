@@ -87,6 +87,12 @@ body{background:#e9f3fc;color:var(--ink)}
 @keyframes mistFloatLow{from{transform:translate3d(-15%,0,0) scale(1)}to{transform:translate3d(20%,-11%,0) scale(1.2)}}
 @media(max-width:750px){#etapas .mist-cloud{opacity:.18;filter:blur(65px)}#etapas .mist-cloud.low{display:none}}
 @media(prefers-reduced-motion:reduce){#etapas .mist-cloud{animation:none!important}}
+/* Névoa realmente perceptível nas margens, mantendo textos sempre acima */
+#etapas .mist-cloud{opacity:.52;filter:blur(54px);mix-blend-mode:normal}
+#etapas .mist-cloud.left{left:-18%;background:radial-gradient(ellipse at center,rgba(144,113,213,.64),rgba(176,152,226,.38) 38%,transparent 75%)}
+#etapas .mist-cloud.right{right:-18%;background:radial-gradient(ellipse at center,rgba(112,161,220,.62),rgba(169,167,224,.35) 38%,transparent 75%)}
+#etapas .mist-cloud.low{opacity:.19}
+@media(max-width:750px){#etapas .mist-cloud{opacity:.25}}
 </style></head><body>
 <header class="top"><div class="wrap top-in"><a class="identity" href="./" aria-label="Portal da História, início"><span class="symbol">✦</span><span><strong>Portal da História</strong><small>Professor Gabriel</small></span></a></div></header>
 <main><section class="hero"><div class="wrap hero-in"><div class="hero-panel"><div class="eyebrow">Sua jornada pelo passado começa aqui</div><h1>História para explorar,<br>investigar e <em>descobrir.</em></h1><p>Um espaço para explorar o mundo, investigar fontes históricas e descobrir como o passado ajuda a compreender o presente. Escolha sua turma e comece a sua jornada.</p><div class="hero-cta"><a class="button gold" href="#etapas">Explorar as turmas <span aria-hidden="true">↗</span></a></div></div></div></section>
