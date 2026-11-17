@@ -43,3 +43,14 @@ header.unified-portal-header .back:hover {color:#d5c5ff!important}
  header.top .symbol, header.unified-portal-header .unified-portal-star {width:39px!important;height:39px!important;flex-basis:39px!important}
  header.unified-portal-header .back {font-size:11px!important;white-space:normal;text-align:right}
 }
+
+/* Faixa de ponta a ponta, inclusive quando um cabeçalho está dentro de uma coluna limitada. */
+html,body {margin-left:0!important;margin-right:0!important}
+header.top, header.unified-portal-header{
+  box-sizing:border-box!important;
+  width:100vw!important;max-width:100vw!important;
+  position:relative!important;left:50%!important;
+  transform:translateX(-50%)!important;
+  margin-left:0!important;margin-right:0!important;
+  border-radius:0!important;
+}
