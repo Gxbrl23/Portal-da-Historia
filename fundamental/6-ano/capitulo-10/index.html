@@ -347,8 +347,9 @@ async function printRomanMap(){
   doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);doc.setFontSize(20);doc.text('ROMA IMPERIAL  |  MAPA MENTAL',23,29);
   doc.setFontSize(10);doc.text('HISTÓRIA - 6º ANO',355,29);
   doc.setFontSize(11);doc.setTextColor(68,56,101);doc.text(a.subtitle,16,50);
-  const positions=[[14,63],[14,164],[283,63],[283,164],[145,209]];
-  const widths=[123,123,123,123,130],heights=[91,91,91,91,67];
+  const six=a.branches.length>5;
+  const positions=six?[[14,53],[14,127],[14,201],[283,53],[283,127],[283,201]]:[[14,63],[14,164],[283,63],[283,164],[145,209]];
+  const widths=six?[123,123,123,123,123,123]:[123,123,123,123,130],heights=six?[69,69,69,69,69,69]:[91,91,91,91,67];
   const centerX=210,centerY=135;
   positions.slice(0,a.branches.length).forEach(([x,y],i)=>{
    const w=widths[i],h=heights[i],tx=x+w/2,ty=y+h/2,co=colors[i%5];
