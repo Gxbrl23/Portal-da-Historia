@@ -347,75 +347,72 @@ async function loadRomanPDF(){
  await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';script.onload=resolve;script.onerror=()=>reject(new Error('Falha ao carregar PDF'));document.head.appendChild(script)});
 }
 function romanPDFAlternative(doc,a,style){
- const palette=[[209,105,65],[36,150,147],[121,91,190],[214,156,45],[75,125,188],[185,90,135]];
- const n=a.branches.length, branch=a.branches;
- const ink=[45,47,69], paper=[251,250,246];
- const fill=(c)=>doc.setFillColor(...c),stroke=(c)=>doc.setDrawColor(...c);
- const text=(v,x,y,size=11,color=ink,weight='normal',max=100)=>{
-   doc.setFont('helvetica',weight);doc.setFontSize(size);doc.setTextColor(...color);
-   const lines=doc.splitTextToSize(String(v),max);
-   doc.text(lines,x,y,{lineHeightFactor:1.22});return lines.length*size*.43;
+ // Cinco composições integrais, em uma única folha A3 horizontal.
+ const ink=[34,43,61],colors=[[223,111,68],[43,151,150],[134,90,190],[210,155,53],[74,139,193],[193,88,151],[83,149,81]];
+ const pastels=[[255,226,177],[208,244,226],[238,213,250],[255,227,201],[206,235,252],[249,211,234],[225,246,195]];
+ const n=a.branches.length;
+ const setFill=c=>doc.setFillColor(...c),setStroke=c=>doc.setDrawColor(...c);
+ const line=(x,y,x2,y2,col)=>{setStroke(col);doc.setLineWidth(1.35);doc.line(x,y,x2,y2)};
+ const label=(str,x,y,w,h,sz=12,cl=ink,align='left')=>{
+  let font=sz,lines=[];
+  while(font>=7.2){doc.setFont('helvetica','bold');doc.setFontSize(font);lines=doc.splitTextToSize(String(str),w);if(lines.length*font*.44<=h)break;font-=.45}
+  doc.setTextColor(...cl);doc.text(lines,align==='center'?x+w/2:x,y+font*.37,{align,lineHeightFactor:1.15});return lines.length*font*.44;
  };
- const lines=(br,w)=>{doc.setFontSize(10.5);return doc.splitTextToSize(br[1],w)};
- const center=(x,y,w,h,color=[68,49,104])=>{
-   fill(color);doc.roundedRect(x,y,w,h,Math.min(19,h/3),Math.min(19,h/3),'F');
-   doc.setFont('helvetica','bold');doc.setFontSize(15);doc.setTextColor(255,255,255);
-   const words=doc.splitTextToSize(a.title,w-18);doc.text(words,x+w/2,y+h/2-(words.length-1)*3,{align:'center'});
+ const copy=(str,x,y,w,h,sz=10.8,cl=ink)=>{
+  let font=sz,lines=[];
+  while(font>=6.6){doc.setFont('helvetica','normal');doc.setFontSize(font);lines=doc.splitTextToSize(String(str),w);if(lines.length*font*.44<=h)break;font-=.35}
+  doc.setTextColor(...cl);doc.text(lines,x,y+font*.37,{lineHeightFactor:1.15});return lines.length*font*.44;
  };
- const edge=(x1,y1,x2,y2,color)=>{stroke(color);doc.setLineWidth(1.25);doc.line(x1,y1,x2,y2)};
- const base=style===3?[246,252,240]:style===4?[230,246,251]:style===5?[252,251,250]:paper;
- fill(base);doc.rect(0,0,420,297,'F');
- // Editorial running head + per-model ornamental signature.
- fill([53,43,78]);doc.rect(0,0,420,9,'F');
- text('PORTAL DA HISTÓRIA     /     ROMA IMPERIAL',16,17,10,[70,55,99],'bold',240);
- text(a.subtitle,16,26,10,[109,103,117],'normal',375);
- if(style===1){
-   // Reference 1: central circle, six neatly connected pastel label cards.
-   const xy=[[14,44],[278,44],[14,125],[278,125],[14,206],[278,206]],w=128,h=63;
-   xy.slice(0,n).forEach(([x,y],i)=>edge(x<200?x+w:x,y+h/2,x<200?178:242,148,palette[i%6]));
-   fill([255,255,255]);stroke([75,102,120]);doc.setLineWidth(1.3);doc.circle(210,148,31,'FD');
-   doc.setTextColor(49,58,71);doc.setFontSize(13);doc.setFont('helvetica','bold');doc.text(doc.splitTextToSize(a.title,55),210,146,{align:'center'});
-   const bands=[[255,224,159],[235,199,247],[214,242,200],[181,232,245],[255,199,218],[255,243,171]];
-   branch.forEach((br,i)=>{const [x,y]=xy[i];fill([255,255,255]);stroke([69,80,93]);doc.setLineWidth(.7);doc.rect(x,y,w,h,'FD');fill(bands[i]);doc.rect(x+.4,y+.4,w-.8,15,'F');text(br[0],x+7,y+11,11,[53,54,67],'bold',w-14);text(br[1],x+7,y+24,9.6,ink,'normal',w-14)});
- }else if(style===2){
-   // Reference 2: typography-driven central motif with asymmetrical dashed arrows and editorial blocks.
-   text(a.title.toUpperCase(),144,144,23,[32,34,43],'bold',132);
-   text('IDEIAS E CONEXÕES',151,156,10,[108,82,121],'normal',110);
-   const xy=[[12,39],[286,45],[18,125],[285,129],[12,205],[282,208]],w=124;
-   branch.forEach((br,i)=>{const [x,y]=xy[i],co=palette[i%6];stroke(co);doc.setLineDashPattern([2,2],0);edge(x<200?x+w:x,y+24,x<200?145:278,145,co);doc.setLineDashPattern([],0);fill([245,235-i*4,216+i*4]);doc.roundedRect(x,y,w,13,3,3,'F');text(br[0],x+5,y+9,11,[37,38,49],'bold',w-10);text(br[1],x+5,y+22,10,ink,'normal',w-10)});
- }else if(style===3){
-   // Reference 3: notebook-grid background, lime organic clusters and hand-annotated arrows.
-   stroke([220,235,219]);doc.setLineWidth(.16);for(let x=5;x<420;x+=6)doc.line(x,0,x,297);for(let y=9;y<297;y+=6)doc.line(0,y,420,y);
-   const xy=[[14,47],[284,47],[14,126],[284,126],[14,204],[284,204]],w=124,h=65;
-   xy.slice(0,n).forEach(([x,y],i)=>edge(x<200?x+w:x,y+h/2,x<200?176:244,147,[36,128,65]));
-   fill([250,255,243]);stroke([36,128,65]);doc.setLineWidth(2);doc.circle(210,147,32,'FD');text(a.title,192,143,14,[27,100,46],'bold',48);
-   branch.forEach((br,i)=>{const [x,y]=xy[i];fill([180+i*6,244,96+i*7]);stroke([34,131,50]);doc.setLineWidth(1.5);doc.roundedRect(x,y,w,h,24,24,'FD');doc.roundedRect(x+3,y+3,w-6,h-6,21,21,'S');text(br[0],x+14,y+16,11,[29,80,43],'bold',w-28);text(br[1],x+14,y+28,9.7,[29,67,38],'normal',w-28)});
- }else if(style===4){
-   // Reference 4: whimsical thought bubbles; pastel sky and connecting bubble trails.
-   const xy=[[12,42],[285,42],[12,121],[285,121],[12,204],[285,204]],w=122,h=66;
-   const pastel=[[244,186,228],[183,207,249],[255,234,160],[255,194,179],[185,244,185],[239,225,161]];
-   center(163,128,94,44,[237,160,147]);
-   branch.forEach((br,i)=>{const [x,y]=xy[i],co=pastel[i];fill(co);stroke([55,57,71]);doc.setLineWidth(1.1);doc.ellipse(x+w/2,y+h/2,w/2,h/2,'FD');doc.circle(x+(i%2?4:w-4),y+h+5,4,'FD');doc.circle(x+(i%2?-2:w+3),y+h+13,2,'FD');text(br[0],x+18,y+23,10.8,[42,44,59],'bold',w-36);text(br[1],x+18,y+34,9.7,[42,44,59],'normal',w-36)});
- }else{
-   // Reference 5: loose concentric colored sketched branches with a strong orange center.
-   fill([255,255,255]);doc.circle(210,147,36,'F');
-   stroke([239,99,46]);doc.setLineWidth(2);doc.circle(210,147,37,'S');doc.circle(210,147,35,'S');
-   doc.setFont('helvetica','bold');doc.setFontSize(14);doc.setTextColor(221,80,41);doc.text(doc.splitTextToSize(a.title,65),210,143,{align:'center'});
-   const xy=[[11,39],[292,39],[11,121],[292,121],[11,205],[292,205]],w=116,h=66;
-   branch.forEach((br,i)=>{const [x,y]=xy[i],co=palette[i%6];edge(x<200?x+w:x,y+h/2,x<200?174:246,147,co);stroke(co);doc.setLineWidth(1.4);doc.roundedRect(x,y,w,h,23,23,'S');doc.roundedRect(x+2,y+2,w-4,h-4,22,22,'S');text(br[0],x+12,y+20,11,co,'bold',w-24);text(br[1],x+12,y+32,9.7,ink,'normal',w-24)});
- }
- text('MAPA MENTAL  /  HISTÓRIA · 6º ANO',16,287,9,[100,89,112],'bold',320);
- // The second page keeps every original text intact for close reading.
- doc.addPage('a3','landscape');fill([252,250,247]);doc.rect(0,0,420,297,'F');
- text(a.title+' — conceitos e explicações',14,20,18,[67,46,102],'bold',375);
- let y=34;
- branch.forEach((br,i)=>{
-  doc.setFont('helvetica','normal');doc.setFontSize(11);
-  const ls=doc.splitTextToSize(br[1],370),needed=20+ls.length*5.5;
-  if(y+needed>275){doc.addPage('a3','landscape');y=20}
-  text(br[0],16,y,13,palette[i%6],'bold',370);y+=8;
-  text(br[1],16,y,11,ink,'normal',370);y+=ls.length*5.5+10;
+ const central=(x,y,w,h,kind)=>{
+  setFill(kind==='green'?[245,255,235]:kind==='bubble'?[250,185,166]:[92,64,159]);
+  setStroke(kind==='green'?[39,125,69]:kind==='bubble'?[61,58,70]:[231,166,84]);
+  doc.setLineWidth(2);if(kind==='circle')doc.ellipse(x+w/2,y+h/2,w/2,h/2,'FD');else doc.roundedRect(x,y,w,h,Math.min(19,h/3),Math.min(19,h/3),'FD');
+  label(a.title,x+8,y+h/2-13,w-16,28,kind==='circle'?15:14,kind==='green'?ink:kind==='bubble'?ink:[255,255,255],'center');
+ };
+ // Distinct layouts, all on a single page. Six generous nodes accommodate the longest original paragraphs.
+ const coords=style===1?[[16,46],[275,46],[16,126],[275,126],[16,206],[275,206]]:
+ style===2?[[12,43],[283,43],[19,124],[276,124],[12,205],[283,205]]:
+ style===3?[[15,45],[284,45],[15,125],[284,125],[15,205],[284,205]]:
+ style===4?[[15,45],[283,45],[15,125],[283,125],[15,205],[283,205]]:
+ [[12,44],[281,44],[17,125],[276,125],[12,207],[281,207]];
+ const w=style===2?125:style===5?127:123,h=style===1?66:style===4?68:69;
+ setFill(style===3?[247,252,242]:style===4?[230,245,253]:[253,251,248]);doc.rect(0,0,420,297,'F');
+ if(style===3){setStroke([221,236,225]);doc.setLineWidth(.18);for(let x=0;x<420;x+=6)doc.line(x,0,x,297);for(let y=0;y<297;y+=6)doc.line(0,y,420,y)}
+ if(style===4){setFill([255,255,255]);for(let i=0;i<7;i++)doc.ellipse(25+i*61,279,54,20,'F')}
+ setFill([58,44,87]);doc.rect(0,0,420,8,'F');
+ label('ROMA IMPERIAL  /  MAPA MENTAL',15,13,300,10,10,[64,53,90]);
+ copy(a.subtitle,15,26,390,9,10,[105,97,118]);
+ const smallCenter=style===2? [165,125,90,48]:[165,124,90,48];
+ coords.slice(0,n).forEach(([x,y],i)=>{
+   const c=style===3?[46,141,61]:colors[i%colors.length];
+   let cx=x<200?x+w:x,cy=y+h/2;
+   if(style===2){setStroke(c);doc.setLineDashPattern([2.8,2.3],0)}else doc.setLineDashPattern([],0);
+   line(cx,cy,x<200?smallCenter[0]:smallCenter[0]+smallCenter[2],smallCenter[1]+smallCenter[3]/2,c);
+   doc.setLineDashPattern([],0);
  });
+ central(...smallCenter,style===3?'green':style===4?'bubble':style===1?'circle':'default');
+ a.branches.forEach((br,i)=>{
+   const [x,y]=coords[i],c=colors[i%colors.length],p=pastels[i%pastels.length];
+   if(style===1){
+     setFill([255,255,255]);setStroke([77,93,106]);doc.setLineWidth(.65);doc.rect(x,y,w,h,'FD');setFill(p);doc.rect(x+.4,y+.4,w-.8,14,'F');
+     label(br[0],x+7,y+2,w-14,11,10.8,ink);copy(br[1],x+8,y+20,w-16,h-24,10.7);
+   }else if(style===2){
+     setFill(p);doc.roundedRect(x+6,y,w-12,15,4,4,'F');label(br[0],x+10,y+2,w-20,11,11,ink);
+     copy(br[1],x+8,y+19,w-16,h-22,10.7);
+   }else if(style===3){
+     setFill([189+i*5,244,133+i*7]);setStroke([38,139,56]);doc.setLineWidth(1.7);doc.roundedRect(x,y,w,h,25,25,'FD');
+     doc.roundedRect(x+3,y+3,w-6,h-6,22,22,'S');
+     label(br[0],x+13,y+11,w-26,14,11,[26,87,42]);copy(br[1],x+13,y+27,w-26,h-35,10.5,[30,67,41]);
+   }else if(style===4){
+     setFill(p);setStroke([55,60,72]);doc.setLineWidth(1.15);doc.ellipse(x+w/2,y+h/2,w/2,h/2,'FD');
+     setFill(p);doc.circle(x+(x<200?w-7:8),y+h+5,4,'F');doc.circle(x+(x<200?w+3:-2),y+h+12,2,'F');
+     label(br[0],x+19,y+13,w-38,13,10.6,ink);copy(br[1],x+19,y+28,w-38,h-37,10.2);
+   }else{
+     setFill([255,255,255]);setStroke(c);doc.setLineWidth(1.75);doc.roundedRect(x,y,w,h,21,21,'FD');doc.roundedRect(x+3,y+3,w-6,h-6,19,19,'S');
+     label(br[0],x+12,y+10,w-24,14,11,c);copy(br[1],x+12,y+27,w-24,h-35,10.5);
+   }
+ });
+ label('PORTAL DA HISTÓRIA · PROFESSOR GABRIEL',15,285,330,8,8.5,[102,94,111]);
 }
 async function printRomanMap(preview=false){
  const btn=document.querySelector('.map-export-controls button');
